@@ -118,6 +118,47 @@ function getselectedvalueps()
 			select.insertBefore(option, select.lastChild);
 		}
 	}
+
+	else if(v==6)
+	{
+		var select = document.getElementById("village"), arr = ["-- Select Village --", 
+"आशिफबाग", "कूढा केशवपुर", "गोलाबाजार", "चक्रतीरथ", "जयसिंहपुर", "जलवानपुरा", "जानकीघाट", "तुलसीनगर", "तुलसीबाड़ी", "दन्तधावन कुण्ड", "दर्शननगर", "नयाघाट", "पाराखान", "प्रमोद वन", "बक्सरिया टोला", "बाजार राजा हरदत्त", "बेगमपुरा", "भीखापुर", "भीखी का पुरवा / शंकरगढ बाजार", "मक्खापुर", "मीरापुर डेरा बीबी", "मुगलपुरा", "रानीबाजार", "रानोपाली", "रामघाट", "रायगंज", "रायगंज ठठराही", "रायगंज नोनहटिया", "लक्ष्मणघाट", "वासुदेवघाट", "शास्त्रीनगर", "शाहनेवाजपुर", "सप्तसागर कालोनी", "स्वर्ग द्वार"];
+		for(var i=0; i<arr.length; i++)
+		{
+			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
+			option.appendChild(txt);
+			option.setAttribute("value", arr[i]);
+			select.insertBefore(option, select.lastChild);
+		}
+	}
+
+else if(v==7)
+	{
+		var select = document.getElementById("village"), arr = ["-- Select Village --", "अंगूरी बाग", "अडगडा", "अमानी गंज", "अश्वनीपुरम केवटहिया", "आदर्श पुरम नगर", "आनन्द विहार कालोनी", "ईदगाह कालोनी", "उसरु", "कश्मीरी मोहल्ला", "कृष्णा नगर कालोनी फतेहगंज", "कौशलपुरी कालोनी", "खीर गली फतेहगंज", "खोजनपुर", "गणेश नगर दालमन्डी", "घोसियाना", "चौक", "जनौरा", "जोगीतारा", "ठठरईया", "दीवान का पुरवा", "दुर्गापुरी गांधी नगर कालोनी", "देवकाली", "देवनगर कालोनी", "नहरबाग", "नैय्यर कालोनी", "पतियरिया", "पहाडगंज घोसियाना", "पूरे हुसैन", "बासमण्डी", "बेगमगंज मकबरा", "मानसनगर कालोनी नवीन मन्डी", "राठहवेली", "रामनगर", "रिकाबगंज", "रीडगंज", "वजीरगंज", "शिवनगर कालोनी नवीन मन्डी", "साहबगंज", "सुभाष नगर", "हमदानी कोठी", "हौसिला नगर"];
+		for(var i=0; i<arr.length; i++)
+		{
+			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
+			option.appendChild(txt);
+			option.setAttribute("value", arr[i]);
+			select.insertBefore(option, select.lastChild);
+		}
+	}
+	
+
+else if(v==8)
+	{
+		var select = document.getElementById("village"), arr = ["-- Select Village --", 
+"उमरनी पिपरी", "उमरपुर", "औहरपुर", "कटारी", "कस्बा बीकापुर", "कोछा", "खजुरहट", "गयासुद्दीनपुर", "गुन्धौर", "चाँदपुर", "चौरे चन्दौली", "जलालपुर माफी", "जासरपुर", "जेरुवा", "जैनपुर", "जोहन", "ताजपुर", "तेन्दुआ रतनपुर", "तोरोमाफी दराबगंज", "दशरथपुर", "नदौना", "नुवावा बैदरा", "पकड़ी दुर्गादासपुर", "परसुंही", "परुआ", "पातूपुर", "पुहंपी", "पूरे बजाज", "बनकट", "बबुरिहा कौधा", "बल्लीपुर", "बिलारी", "भरहूखाता", "भावापुर नेवादा", "भुलईपुर निधियावाँ", "मजरूद्दीनपुर", "मलेथूकनक", "रमऊपुर गंगापुर", "रामदासपुर मझौली", "रामनगर", "रामपुर जोहन", "रूरूखास", "लक्ष्मणपुर ग्रन्ट", "शंकरपुर", "शिवतर", "शेरपुर खपरैला", "शेरपुर पारा", "सराय भनौली", "सरायखर्गी", "सुरासराय", "सोनबरसा माफी" ];
+		for(var i=0; i<arr.length; i++)
+		{
+			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
+			option.appendChild(txt);
+			option.setAttribute("value", arr[i]);
+			select.insertBefore(option, select.lastChild);
+		}
+	}
+	
+
 	else
 	{
 		alert("Choose Option");
@@ -238,11 +279,11 @@ function getselectedvalueps()
 <option value="3"> थाना हैदरगंज </option>
 <option value="4"> थाना इनायतनगर </option>
 <option value="5"> थाना खण्डासा </option>
-<option value="6"> कोतवाली नगर </option>
-<option value="7"> कोतवाली अयोध्या </option>
-<option value="8"> थाना राम जन्म भूमि </option>
-<option value="9"> थाना पूराकलन्दर </option>
-<option value="10"> कोतवाली बीकापुर </option>
+<option value="6"> कोतवाली अयोध्या </option>
+<option value="7"> कोतवाली नगर </option>
+<option value="8"> कोतवाली बीकापुर </option>
+<option value="9"> थाना राम जन्म भूमि </option>
+<option value="10"> थाना पूराकलन्दर </option>
 <option value="11"> थाना तारुन </option>
 <option value="12"> कोतवाली रुदौली </option>
 <option value="13"> थाना पटरंगा </option>
