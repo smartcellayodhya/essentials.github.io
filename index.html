@@ -9,6 +9,127 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
+
+.checkboxcontainer { margin: 100px 50px; font-size: 20px;}
+
+</style>
+<script>
+
+function getvalue()
+{
+	
+	var checks = document.getElementsByClassName("checks");
+	var str = "";
+	for( i=0; i<3; i++)
+	{
+		if(checks[i].checked)
+		{
+			str += checks[i].value + " ";
+	
+		}
+
+	}
+
+	alert(str);
+}
+
+function getselectedvalueps()
+{
+
+
+ if (document.getElementById("village").hasChildNodes()) 
+ {
+       var list = document.getElementById("village");
+       var c = list.length;
+      for( var x=0; x<c; x++)
+    {  
+     list.removeChild(list.childNodes[0]);
+      // alert(x);
+   }
+		  // document.getElementById("village").removeChild(childNodes[1]);
+   //document.getElementById("village").removeChild(childNodes[2]);
+  // document.getElementById("village").removeChild(childNodes[3]);
+   
+
+    }
+
+
+	var v = document.getElementById("ps").value;
+	//alert(v);
+	if(v==1)
+	{
+		var select = document.getElementById("village"), arr = ["-- Select Village --", "अब्बुसराय", "कोटसराय", "गद्दौपुर", "गौरा पट्टी", "घाटमपुर", "जगदीशपुर", "जमथराघाट", "ताजपुर कोडरा", "दराबगंज", "नया पुरवा", "नियावां", "पलिया शाहबदी", "फतेहपुर सरैया", "बनवीरपुर", "बेगमगंज गढैया", "भीखनपुर", "मऊयदुवंशपुर", "मशीनिया", "मिर्जाअली बाजार", "मीरनघाट", "मुमताज नगर", "रायपुर", "रेतिया", "सदर बाजार", "सहादतगंज", "हरीपुर जलालाबाद", "हसनु कटरा"
+];
+
+
+
+		for(var i=0; i<arr.length; i++)
+		{
+			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
+			option.appendChild(txt);
+			option.setAttribute("value", arr[i]);
+			select.insertBefore(option, select.lastChild);
+		}
+	}
+	else if(v==2)
+	{
+		var select = document.getElementById("village"), arr = ["-- Select Village --", 
+"अमसिन", "उनियार", "कस्बा गोशाईगंज", "टण्डौली", "दिलासीगंज", "पकरैला अचकवापुर", "पौसरा", "महबूबगंज भैरीपुर", "रामनगर मिश्रौली"];
+		for(var i=0; i<arr.length; i++)
+		{
+			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
+			option.appendChild(txt);
+			option.setAttribute("value", arr[i]);
+			select.insertBefore(option, select.lastChild);
+		}
+				
+
+	}
+	else if(v==3)
+	{
+		var select = document.getElementById("village"), arr = ["-- Select Village --", "इमिलिया", "केरालाल खॉ", "जजवारा", "जाना", "थरियाकला", "पचगवां", "परसपुर हथिगो", "पाराराम", "बैतीकला", "बोदहरी", "भैरोपुर टिकरा", "मऊ", "मलावन", "रसूलपुर", "सराय मनोधर", "सिंहोरिया", "सिरसा नियाजपुर", "हैदरगंज"];
+		for(var i=0; i<arr.length; i++)
+		{
+			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
+			option.appendChild(txt);
+			option.setAttribute("value", arr[i]);
+			select.insertBefore(option, select.lastChild);
+		}
+	}
+	else if(v==4)
+	{
+	var select = document.getElementById("village"), arr = ["-- Select Village --", "अछोरा", "अस्थना/गोरवा/गढ़ा", "आस्तीकन/डीहपूरे बीरबल", "इनायतनगर", "ईंटगांव", "कदनपुर", "कहुआ", "किनौली / सोनस", "कुचेरा", "गिरधरामऊ", "गुरौली फत्ते सिंह", "चमैला", "चिखड़ी", "टकसरा", "तारडीह उर्फ तरौली", "निमड़ी पिलाई", "पडरी", "परवर पारा", "परसपुर सथरा", "पलिया प्रताप शाह", "पलिया लोहानी", "पलियामाफी", "पाराब्रहम्नान", "मजनाई", "मलेथू बुजुर्ग", "महुलारा", "मिल्कीपुर", "मीठेगांव/रसूलपुर", "रनापुर", "रेवना", "शाहगंज मुकीमपुर पहाड़पुर/ सरसोपुर", "सरियावां / मुंगीशपुर", "सिंधौरा", "सेमरा", "सेवरा", "सोहवल सलोनी", "हिसामुद्दीनपुर", "हूसेपुर" ];
+		for(var i=0; i<arr.length; i++)
+		{
+			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
+			option.appendChild(txt);
+			option.setAttribute("value", arr[i]);
+			select.insertBefore(option, select.lastChild);
+		}	
+	}
+	else if(v==5)
+	{
+		var select = document.getElementById("village"), arr = ["-- Select Village --", "अजरौली", "अड़बड़ सरैया", "अमावासूफी", "किन्हूपुर", "कुरावन", "कोटिया", "खण्डासा", "गद्दोपुर", "घटौली", "जगदीशपुर", "जयराजपुर", "डीली सरैया", "डूडी", "मंझनपुर", "मितौरा", "मोहम्मदपुर", "रायपट्टी", "सतनापुर"];
+		for(var i=0; i<arr.length; i++)
+		{
+			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
+			option.appendChild(txt);
+			option.setAttribute("value", arr[i]);
+			select.insertBefore(option, select.lastChild);
+		}
+	}
+	else
+	{
+		alert("Choose Option");
+	}
+
+
+}
+
+</script>
+
+
+
 </head>
 
 <body>
@@ -105,29 +226,42 @@
 
 <div class="card-body">
 <p>
+
+
+<p class="bg-dark text-white p-2">Select your Police Station </p>
+
 <form>
-<select name="ps">
-<option value=""> थाना कैण्ट </option>
-<option value=""> कोतवाली नगर </option>
-<option value=""> कोतवाली अयोध्या </option>
-<option value=""> थाना राम जन्म भूमि </option>
-<option value=""> थाना पूराकलन्दर </option>
-<option value=""> कोतवाली बीकापुर </option>
-<option value=""> थाना तारुन </option>
-<option value=""> थाना हैदरगंज </option>
-<option value=""> कोतवाली रुदौली </option>
-<option value=""> थाना पटरंगा </option>
-<option value=""> थाना मवई </option>
-<option value=""> थाना इनायतनगर </option>
-<option value=""> थाना कुमारगंज </option>
-<option value=""> थाना खण्डासा </option>
-<option value=""> थाना रौनाही </option>
-<option value=""> थाना गोसांईगंज </option>
-<option value=""> थाना महाराजगंज </option>
+<p>
+<select id="ps" onchange="getselectedvalueps();">
+<option value="1"> थाना कैण्ट </option>
+<option value="2"> थाना गोसांईगंज </option>
+<option value="3"> थाना हैदरगंज </option>
+<option value="4"> थाना इनायतनगर </option>
+<option value="5"> थाना खण्डासा </option>
+<option value="6"> कोतवाली नगर </option>
+<option value="7"> कोतवाली अयोध्या </option>
+<option value="8"> थाना राम जन्म भूमि </option>
+<option value="9"> थाना पूराकलन्दर </option>
+<option value="10"> कोतवाली बीकापुर </option>
+<option value="11"> थाना तारुन </option>
+<option value="12"> कोतवाली रुदौली </option>
+<option value="13"> थाना पटरंगा </option>
+<option value="14"> थाना मवई </option>
+<option value="15"> थाना कुमारगंज </option>
+<option value="16"> थाना रौनाही </option>
+<option value="17"> थाना महाराजगंज </option>
 </select>
+</p>
+
+<p class="bg-dark text-white p-2">Select your Village/Mohalla </p>
+
+<select id="village" onchange="getselectedvaluevillage();">
+<option value="none"> --- Select Village ---</option>
+</select>
+
 </form>
 </p>
-<p class="bg-dark text-white p-2">You Selected: </p>
+ 
 </div>
 
 
@@ -145,8 +279,19 @@
 
 <div class="card-body">
 <p>
-<input type="text" />
+
+<form>
+<div class="checkboxcontainer">
+<input type="checkbox" class="checks" value= "Apple"> APPLE <br>
+<input type="checkbox" class="checks" value= "Orange"> ORANGE <br>
+<input type="checkbox" class="checks" value= "Mango"> Mango <br>
+<hr><a href="#" onclick="getvalue(); return false;"> Get Value </a>
+ 
+</div>
+
+</form>
 </p>
+
 <p class="bg-dark text-white p-2">You Selected: </p>
 </div>
 
