@@ -5,6 +5,11 @@
 
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -14,6 +19,193 @@
 
 </style>
 <script>
+
+ $("body").on("click", "#upload", function () {
+        //Reference the FileUpload element.
+        var fileUpload = $("#fileUpload")[0];
+ 		var button = $("#upload")[0];
+ 		var ps = $("#ps")[0];
+ 		var vill = $("#village")[0];
+
+ 		alert(ps.value + vill.value + button.value);
+        //Validate whether File is valid Excel file.
+        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
+        if (regex.test(fileUpload.value.toLowerCase())) {
+            if (typeof (FileReader) != "undefined") {
+                var reader = new FileReader();
+ 
+                //For Browsers other than IE.
+                if (reader.readAsBinaryString) {
+                    reader.onload = function (e) {
+                        ProcessExcel(e.target.result);
+                    };
+                    reader.readAsBinaryString(fileUpload.files[0]);
+                } else {
+                    //For IE Browser.
+                    reader.onload = function (e) {
+                        var data = "";
+                        var bytes = new Uint8Array(e.target.result);
+                        for (var i = 0; i < bytes.byteLength; i++) {
+                            data += String.fromCharCode(bytes[i]);
+                        }
+                        ProcessExcel(data);
+                    };
+                    reader.readAsArrayBuffer(fileUpload.files[0]);
+                }
+            } else {
+                alert("This browser does not support HTML5.");
+            }
+        } else {
+            alert("Please upload a valid Excel file.");
+        }
+    });
+    function ProcessExcel(data) {
+        //Read the Excel File data.
+        var workbook = XLSX.read(data, {
+            type: 'binary'
+        });
+ 
+        //Fetch the name of First Sheet.
+        var firstSheet = workbook.SheetNames[0];
+ 
+        //Read all rows from First Sheet into an JSON array.
+        var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
+ 
+        //Create a HTML Table element.
+        var table = $("<table />");
+        table[0].border = "1";
+ 
+        //Add the header row.
+        var row = $(table[0].insertRow(-1));
+ 
+       //Add the header cells.
+        var headerCell = $("<th />");
+        headerCell.html("S.NO.");
+        row.append(headerCell);
+ 
+        var headerCell = $("<th />");
+        headerCell.html("CONSTABLE NAME");
+        row.append(headerCell);
+ 
+        var headerCell = $("<th />");
+        headerCell.html("PNO");
+        row.append(headerCell);
+
+
+        var headerCell = $("<th />");
+        headerCell.html("MOB. NO.");
+        row.append(headerCell);
+
+        var headerCell = $("<th />");
+        headerCell.html("SERVICES");
+        row.append(headerCell);
+
+        var headerCell = $("<th />");
+        headerCell.html("SHOPKEEPER NAME");
+        row.append(headerCell);
+
+        var headerCell = $("<th />");
+        headerCell.html("CONTACT NO");
+        row.append(headerCell);
+
+        var headerCell = $("<th />");
+        headerCell.html("POLICE STATION");
+        row.append(headerCell);
+
+        var headerCell = $("<th />");
+        headerCell.html("MOHALLA/ VILLAGE");
+        row.append(headerCell);
+
+        var headerCell = $("<th />");
+        headerCell.html("STREET");
+        row.append(headerCell);
+
+        var headerCell = $("<th />");
+        headerCell.html("LAT/LONG");
+        row.append(headerCell);
+ 
+        //Add the data rows from Excel file.
+        for (var i = 0; i < excelRows.length; i++) {
+            //Add the data row.
+         if((excelRows[i].A)%5==0){
+            var row = $(table[0].insertRow(-1));
+ 
+            //Add the data cells.
+            var cell = $("<td />");
+            cell.html(excelRows[i].A);
+            row.append(cell);
+ 
+            cell = $("<td />");
+            cell.html(excelRows[i].B);
+            row.append(cell);
+ 
+            cell = $("<td />");
+            cell.html(excelRows[i].C);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].D);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].L);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].F);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].G);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].H);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].I);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].J);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].K);
+            row.append(cell);
+
+}
+
+           //    document.write(excelRows[i].Id+ "/ " + excelRows[i].Name + "/ " + excelRows[i].country+ "<hr>");
+        }
+ 
+        var dvExcel = $("#dvExcel");
+        dvExcel.html("");
+        dvExcel.append(table);
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function getvalue()
 {
@@ -345,7 +537,7 @@ else if(v==13)
 
 
 <div class="d-flex flex-row text-center text-white">
-<div class="p-4 bg-success font-div" data-toggle="collapse" data-target="#home">
+<div  class="p-4 bg-success font-div" data-toggle="collapse" data-target="#home">
 <i class="fa fa-home fa-2x d-block"></i>Search
 </div>
 
@@ -446,6 +638,33 @@ else if(v==13)
 
 </form>
 </p>
+
+
+
+
+
+
+
+
+
+
+
+<p>
+<input type="file" id="fileUpload" />
+<input type="button" id="upload" value="AmanUpload" />
+<hr />
+<div id="dvExcel"></div>
+
+
+</p>
+
+
+
+
+
+
+
+
  
 </div>
 
