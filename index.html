@@ -17,17 +17,45 @@
 
 .checkboxcontainer { margin: 100px 50px; font-size: 20px;}
 
-</style>
-<script>
+<style>
 
+#dvExcel {
+display:none; 
+position:fixed;
+	z-index: 1;
+	left:0;
+	top:0;
+	margin-right:20%;
+	margin-left:20%;
+	margin-top: 10%;
+	margin-bottom:20%;
+	height:70%;
+	width:70%;
+	overflow:auto;
+	background-color: blue;
+	color:white;
+}
+
+</style>
+
+
+
+
+<div id="dvExcel"></div>
+
+
+<script>
+		var police = 0;
+ 		var village = "";
  $("body").on("click", "#upload", function () {
         //Reference the FileUpload element.
         var fileUpload = $("#fileUpload")[0];
  		var button = $("#upload")[0];
  		var ps = $("#ps")[0];
  		var vill = $("#village")[0];
-
- 		alert(ps.value + vill.value + button.value);
+ 		 police = ps.value;
+ 		 village = vill.value;
+ 		
         //Validate whether File is valid Excel file.
         var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
         if (regex.test(fileUpload.value.toLowerCase())) {
@@ -59,6 +87,7 @@
             alert("Please upload a valid Excel file.");
         }
     });
+
     function ProcessExcel(data) {
         //Read the Excel File data.
         var workbook = XLSX.read(data, {
@@ -124,12 +153,33 @@
         headerCell.html("LAT/LONG");
         row.append(headerCell);
  
+ alert(police + village);
+var cases=0;
+if (police ==0 & village == 0)
+cases = 1;
+else if (police ==0 & village !=0)
+cases = 2;
+else if (police !=0 & village == 0)
+cases = 3;
+else 
+cases=4;
+
+alert("Your Case Is : "+ cases);
+//alert(typeof village);
+//var ii = excelRows[i].I;
+//alert(typeof ii);
+
+
         //Add the data rows from Excel file.
         for (var i = 0; i < excelRows.length; i++) {
             //Add the data row.
-         if((excelRows[i].A)%5==0){
+        // if((excelRows[i].A)%5==0){
             var row = $(table[0].insertRow(-1));
  
+if(cases ==4)
+{
+if((police == excelRows[i].A) & (village == excelRows[i].I))
+{
             //Add the data cells.
             var cell = $("<td />");
             cell.html(excelRows[i].A);
@@ -174,15 +224,75 @@
 			cell = $("<td />");
             cell.html(excelRows[i].K);
             row.append(cell);
+				       
+			} // inner if end				       
+				        } // end of if
+
+
+				        else if (cases == 1)
+				        {
+				        	 var cell = $("<td />");
+            cell.html(excelRows[i].A);
+            row.append(cell);
+ 
+            cell = $("<td />");
+            cell.html(excelRows[i].B);
+            row.append(cell);
+ 
+            cell = $("<td />");
+            cell.html(excelRows[i].C);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].D);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].L);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].F);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].G);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].H);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].I);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].J);
+            row.append(cell);
+
+			cell = $("<td />");
+            cell.html(excelRows[i].K);
+            row.append(cell);
+				 	        	
+
+
+				        }
+				        else
+				        {
+				        	
+
+				        }
 
 }
 
            //    document.write(excelRows[i].Id+ "/ " + excelRows[i].Name + "/ " + excelRows[i].country+ "<hr>");
-        }
+        
  
         var dvExcel = $("#dvExcel");
         dvExcel.html("");
         dvExcel.append(table);
+         document.getElementById('dvExcel').style.display="block";
     };
 
 
@@ -250,7 +360,7 @@ function getselectedvalueps()
 	//alert(v);
 	if(v==1)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", "अब्बुसराय", "कोटसराय", "गद्दौपुर", "गौरा पट्टी", "घाटमपुर", "जगदीशपुर", "जमथराघाट", "ताजपुर कोडरा", "दराबगंज", "नया पुरवा", "नियावां", "पलिया शाहबदी", "फतेहपुर सरैया", "बनवीरपुर", "बेगमगंज गढैया", "भीखनपुर", "मऊयदुवंशपुर", "मशीनिया", "मिर्जाअली बाजार", "मीरनघाट", "मुमताज नगर", "रायपुर", "रेतिया", "सदर बाजार", "सहादतगंज", "हरीपुर जलालाबाद", "हसनु कटरा"
+		var select = document.getElementById("village"), arr = ["अब्बुसराय", "कोटसराय", "गद्दौपुर", "गौरा पट्टी", "घाटमपुर", "जगदीशपुर", "जमथराघाट", "ताजपुर कोडरा", "दराबगंज", "नया पुरवा", "नियावां", "पलिया शाहबदी", "फतेहपुर सरैया", "बनवीरपुर", "बेगमगंज गढैया", "भीखनपुर", "मऊयदुवंशपुर", "मशीनिया", "मिर्जाअली बाजार", "मीरनघाट", "मुमताज नगर", "रायपुर", "रेतिया", "सदर बाजार", "सहादतगंज", "हरीपुर जलालाबाद", "हसनु कटरा"
 ];
 
 
@@ -265,8 +375,7 @@ function getselectedvalueps()
 	}
 	else if(v==2)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", 
-"अमसिन", "उनियार", "कस्बा गोशाईगंज", "टण्डौली", "दिलासीगंज", "पकरैला अचकवापुर", "पौसरा", "महबूबगंज भैरीपुर", "रामनगर मिश्रौली"];
+		var select = document.getElementById("village"), arr = ["अमसिन", "उनियार", "कस्बा गोशाईगंज", "टण्डौली", "दिलासीगंज", "पकरैला अचकवापुर", "पौसरा", "महबूबगंज भैरीपुर", "रामनगर मिश्रौली"];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -279,7 +388,7 @@ function getselectedvalueps()
 	}
 	else if(v==3)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", "इमिलिया", "केरालाल खॉ", "जजवारा", "जाना", "थरियाकला", "पचगवां", "परसपुर हथिगो", "पाराराम", "बैतीकला", "बोदहरी", "भैरोपुर टिकरा", "मऊ", "मलावन", "रसूलपुर", "सराय मनोधर", "सिंहोरिया", "सिरसा नियाजपुर", "हैदरगंज"];
+		var select = document.getElementById("village"), arr = ["इमिलिया", "केरालाल खॉ", "जजवारा", "जाना", "थरियाकला", "पचगवां", "परसपुर हथिगो", "पाराराम", "बैतीकला", "बोदहरी", "भैरोपुर टिकरा", "मऊ", "मलावन", "रसूलपुर", "सराय मनोधर", "सिंहोरिया", "सिरसा नियाजपुर", "हैदरगंज"];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -290,7 +399,7 @@ function getselectedvalueps()
 	}
 	else if(v==4)
 	{
-	var select = document.getElementById("village"), arr = ["-- Select Village --", "अछोरा", "अस्थना/गोरवा/गढ़ा", "आस्तीकन/डीहपूरे बीरबल", "इनायतनगर", "ईंटगांव", "कदनपुर", "कहुआ", "किनौली / सोनस", "कुचेरा", "गिरधरामऊ", "गुरौली फत्ते सिंह", "चमैला", "चिखड़ी", "टकसरा", "तारडीह उर्फ तरौली", "निमड़ी पिलाई", "पडरी", "परवर पारा", "परसपुर सथरा", "पलिया प्रताप शाह", "पलिया लोहानी", "पलियामाफी", "पाराब्रहम्नान", "मजनाई", "मलेथू बुजुर्ग", "महुलारा", "मिल्कीपुर", "मीठेगांव/रसूलपुर", "रनापुर", "रेवना", "शाहगंज मुकीमपुर पहाड़पुर/ सरसोपुर", "सरियावां / मुंगीशपुर", "सिंधौरा", "सेमरा", "सेवरा", "सोहवल सलोनी", "हिसामुद्दीनपुर", "हूसेपुर" ];
+	var select = document.getElementById("village"), arr = ["अछोरा", "अस्थना/गोरवा/गढ़ा", "आस्तीकन/डीहपूरे बीरबल", "इनायतनगर", "ईंटगांव", "कदनपुर", "कहुआ", "किनौली / सोनस", "कुचेरा", "गिरधरामऊ", "गुरौली फत्ते सिंह", "चमैला", "चिखड़ी", "टकसरा", "तारडीह उर्फ तरौली", "निमड़ी पिलाई", "पडरी", "परवर पारा", "परसपुर सथरा", "पलिया प्रताप शाह", "पलिया लोहानी", "पलियामाफी", "पाराब्रहम्नान", "मजनाई", "मलेथू बुजुर्ग", "महुलारा", "मिल्कीपुर", "मीठेगांव/रसूलपुर", "रनापुर", "रेवना", "शाहगंज मुकीमपुर पहाड़पुर/ सरसोपुर", "सरियावां / मुंगीशपुर", "सिंधौरा", "सेमरा", "सेवरा", "सोहवल सलोनी", "हिसामुद्दीनपुर", "हूसेपुर" ];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -301,7 +410,7 @@ function getselectedvalueps()
 	}
 	else if(v==5)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", "अजरौली", "अड़बड़ सरैया", "अमावासूफी", "किन्हूपुर", "कुरावन", "कोटिया", "खण्डासा", "गद्दोपुर", "घटौली", "जगदीशपुर", "जयराजपुर", "डीली सरैया", "डूडी", "मंझनपुर", "मितौरा", "मोहम्मदपुर", "रायपट्टी", "सतनापुर"];
+		var select = document.getElementById("village"), arr = ["अजरौली", "अड़बड़ सरैया", "अमावासूफी", "किन्हूपुर", "कुरावन", "कोटिया", "खण्डासा", "गद्दोपुर", "घटौली", "जगदीशपुर", "जयराजपुर", "डीली सरैया", "डूडी", "मंझनपुर", "मितौरा", "मोहम्मदपुर", "रायपट्टी", "सतनापुर"];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -313,8 +422,7 @@ function getselectedvalueps()
 
 	else if(v==6)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", 
-"आशिफबाग", "कूढा केशवपुर", "गोलाबाजार", "चक्रतीरथ", "जयसिंहपुर", "जलवानपुरा", "जानकीघाट", "तुलसीनगर", "तुलसीबाड़ी", "दन्तधावन कुण्ड", "दर्शननगर", "नयाघाट", "पाराखान", "प्रमोद वन", "बक्सरिया टोला", "बाजार राजा हरदत्त", "बेगमपुरा", "भीखापुर", "भीखी का पुरवा / शंकरगढ बाजार", "मक्खापुर", "मीरापुर डेरा बीबी", "मुगलपुरा", "रानीबाजार", "रानोपाली", "रामघाट", "रायगंज", "रायगंज ठठराही", "रायगंज नोनहटिया", "लक्ष्मणघाट", "वासुदेवघाट", "शास्त्रीनगर", "शाहनेवाजपुर", "सप्तसागर कालोनी", "स्वर्ग द्वार"];
+		var select = document.getElementById("village"), arr = ["आशिफबाग", "कूढा केशवपुर", "गोलाबाजार", "चक्रतीरथ", "जयसिंहपुर", "जलवानपुरा", "जानकीघाट", "तुलसीनगर", "तुलसीबाड़ी", "दन्तधावन कुण्ड", "दर्शननगर", "नयाघाट", "पाराखान", "प्रमोद वन", "बक्सरिया टोला", "बाजार राजा हरदत्त", "बेगमपुरा", "भीखापुर", "भीखी का पुरवा / शंकरगढ बाजार", "मक्खापुर", "मीरापुर डेरा बीबी", "मुगलपुरा", "रानीबाजार", "रानोपाली", "रामघाट", "रायगंज", "रायगंज ठठराही", "रायगंज नोनहटिया", "लक्ष्मणघाट", "वासुदेवघाट", "शास्त्रीनगर", "शाहनेवाजपुर", "सप्तसागर कालोनी", "स्वर्ग द्वार"];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -326,7 +434,7 @@ function getselectedvalueps()
 
 else if(v==7)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", "अंगूरी बाग", "अडगडा", "अमानी गंज", "अश्वनीपुरम केवटहिया", "आदर्श पुरम नगर", "आनन्द विहार कालोनी", "ईदगाह कालोनी", "उसरु", "कश्मीरी मोहल्ला", "कृष्णा नगर कालोनी फतेहगंज", "कौशलपुरी कालोनी", "खीर गली फतेहगंज", "खोजनपुर", "गणेश नगर दालमन्डी", "घोसियाना", "चौक", "जनौरा", "जोगीतारा", "ठठरईया", "दीवान का पुरवा", "दुर्गापुरी गांधी नगर कालोनी", "देवकाली", "देवनगर कालोनी", "नहरबाग", "नैय्यर कालोनी", "पतियरिया", "पहाडगंज घोसियाना", "पूरे हुसैन", "बासमण्डी", "बेगमगंज मकबरा", "मानसनगर कालोनी नवीन मन्डी", "राठहवेली", "रामनगर", "रिकाबगंज", "रीडगंज", "वजीरगंज", "शिवनगर कालोनी नवीन मन्डी", "साहबगंज", "सुभाष नगर", "हमदानी कोठी", "हौसिला नगर"];
+		var select = document.getElementById("village"), arr = ["अंगूरी बाग", "अडगडा", "अमानी गंज", "अश्वनीपुरम केवटहिया", "आदर्श पुरम नगर", "आनन्द विहार कालोनी", "ईदगाह कालोनी", "उसरु", "कश्मीरी मोहल्ला", "कृष्णा नगर कालोनी फतेहगंज", "कौशलपुरी कालोनी", "खीर गली फतेहगंज", "खोजनपुर", "गणेश नगर दालमन्डी", "घोसियाना", "चौक", "जनौरा", "जोगीतारा", "ठठरईया", "दीवान का पुरवा", "दुर्गापुरी गांधी नगर कालोनी", "देवकाली", "देवनगर कालोनी", "नहरबाग", "नैय्यर कालोनी", "पतियरिया", "पहाडगंज घोसियाना", "पूरे हुसैन", "बासमण्डी", "बेगमगंज मकबरा", "मानसनगर कालोनी नवीन मन्डी", "राठहवेली", "रामनगर", "रिकाबगंज", "रीडगंज", "वजीरगंज", "शिवनगर कालोनी नवीन मन्डी", "साहबगंज", "सुभाष नगर", "हमदानी कोठी", "हौसिला नगर"];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -339,8 +447,7 @@ else if(v==7)
 
 else if(v==8)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", 
-"उमरनी पिपरी", "उमरपुर", "औहरपुर", "कटारी", "कस्बा बीकापुर", "कोछा", "खजुरहट", "गयासुद्दीनपुर", "गुन्धौर", "चाँदपुर", "चौरे चन्दौली", "जलालपुर माफी", "जासरपुर", "जेरुवा", "जैनपुर", "जोहन", "ताजपुर", "तेन्दुआ रतनपुर", "तोरोमाफी दराबगंज", "दशरथपुर", "नदौना", "नुवावा बैदरा", "पकड़ी दुर्गादासपुर", "परसुंही", "परुआ", "पातूपुर", "पुहंपी", "पूरे बजाज", "बनकट", "बबुरिहा कौधा", "बल्लीपुर", "बिलारी", "भरहूखाता", "भावापुर नेवादा", "भुलईपुर निधियावाँ", "मजरूद्दीनपुर", "मलेथूकनक", "रमऊपुर गंगापुर", "रामदासपुर मझौली", "रामनगर", "रामपुर जोहन", "रूरूखास", "लक्ष्मणपुर ग्रन्ट", "शंकरपुर", "शिवतर", "शेरपुर खपरैला", "शेरपुर पारा", "सराय भनौली", "सरायखर्गी", "सुरासराय", "सोनबरसा माफी" ];
+		var select = document.getElementById("village"), arr = ["उमरनी पिपरी", "उमरपुर", "औहरपुर", "कटारी", "कस्बा बीकापुर", "कोछा", "खजुरहट", "गयासुद्दीनपुर", "गुन्धौर", "चाँदपुर", "चौरे चन्दौली", "जलालपुर माफी", "जासरपुर", "जेरुवा", "जैनपुर", "जोहन", "ताजपुर", "तेन्दुआ रतनपुर", "तोरोमाफी दराबगंज", "दशरथपुर", "नदौना", "नुवावा बैदरा", "पकड़ी दुर्गादासपुर", "परसुंही", "परुआ", "पातूपुर", "पुहंपी", "पूरे बजाज", "बनकट", "बबुरिहा कौधा", "बल्लीपुर", "बिलारी", "भरहूखाता", "भावापुर नेवादा", "भुलईपुर निधियावाँ", "मजरूद्दीनपुर", "मलेथूकनक", "रमऊपुर गंगापुर", "रामदासपुर मझौली", "रामनगर", "रामपुर जोहन", "रूरूखास", "लक्ष्मणपुर ग्रन्ट", "शंकरपुर", "शिवतर", "शेरपुर खपरैला", "शेरपुर पारा", "सराय भनौली", "सरायखर्गी", "सुरासराय", "सोनबरसा माफी" ];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -353,7 +460,7 @@ else if(v==8)
 
 else if(v==9)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", "ऐहार", "करीमपुर", "गौरियामऊ", "जमुनियामऊ", "नेवती", "परसौली", "बिकावल", "बिजडी", "भौली", "मीसा", "मो0 अकबरगंज", "मो0 कजियाना", "मो0 काजीपुरा", "मो0 ख्वाजाहाल", "मो0 नयागंज", "मो0 पूरे खान", "मो0 पूरे मलिक", "मो0 पूरेहुसैन खां", "ललुवापुर", "शुक्लापुर", "सरायमंझन"
+		var select = document.getElementById("village"), arr = ["ऐहार", "करीमपुर", "गौरियामऊ", "जमुनियामऊ", "नेवती", "परसौली", "बिकावल", "बिजडी", "भौली", "मीसा", "मो0 अकबरगंज", "मो0 कजियाना", "मो0 काजीपुरा", "मो0 ख्वाजाहाल", "मो0 नयागंज", "मो0 पूरे खान", "मो0 पूरे मलिक", "मो0 पूरेहुसैन खां", "ललुवापुर", "शुक्लापुर", "सरायमंझन"
  ];
 		for(var i=0; i<arr.length; i++)
 		{
@@ -368,8 +475,7 @@ else if(v==9)
 
 else if(v==10)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", 
-"अकमा", "इमामगंज", "उधरनपुर", "उधुई", "उमरहर", "कुड़वा पूरे लाल खाँ", "केशवपुर चिलबिली", "खेमापुर मेवापुर", "गोकुला", "घोड़वल", "जोरियम", "देवगांव", "नरेन्द्र भादा", "पालपुर", "पिठला", "पूरा उर्फ सुमेरपुर", "बवां", "मसेढ़ा", "माझगांव", "मेवापुर H/O पहाड़पुर", "रानिकपुर", "लिलहा रसूलपुर", "सराय हेमराज", "हरदोइया" ];
+		var select = document.getElementById("village"), arr = ["अकमा", "इमामगंज", "उधरनपुर", "उधुई", "उमरहर", "कुड़वा पूरे लाल खाँ", "केशवपुर चिलबिली", "खेमापुर मेवापुर", "गोकुला", "घोड़वल", "जोरियम", "देवगांव", "नरेन्द्र भादा", "पालपुर", "पिठला", "पूरा उर्फ सुमेरपुर", "बवां", "मसेढ़ा", "माझगांव", "मेवापुर H/O पहाड़पुर", "रानिकपुर", "लिलहा रसूलपुर", "सराय हेमराज", "हरदोइया" ];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -382,8 +488,7 @@ else if(v==10)
 
 else if(v==11)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", 
- "अरवत", "अलनाभारी", "आलापुर", "कनकपुर", "कल्याणपुर बरौली", "काजीपुर बिस्वा", "काजीपुर मांझा", "कादीपुर", "खानपुर", "खुशहालगंज", "चरेरा", "नारा", "नेवकबीरपुर", "पम्पारपुर", "पूरा बाजार", "बबुआपुर", "बेरासपुर", "मया भीखी", "मलखानपुर", , "मेदनीपुर", "रसूलाबाद", "राजेपुर", "रोशननगर बाकरगंज", "रौवा लोहंगपुर", "समन्था", "समैसा", "सरायरासी", "हैंसा" ];
+		var select = document.getElementById("village"), arr = ["अरवत", "अलनाभारी", "आलापुर", "कनकपुर", "कल्याणपुर बरौली", "काजीपुर बिस्वा", "काजीपुर मांझा", "कादीपुर", "खानपुर", "खुशहालगंज", "चरेरा", "नारा", "नेवकबीरपुर", "पम्पारपुर", "पूरा बाजार", "बबुआपुर", "बेरासपुर", "मया भीखी", "मलखानपुर", , "मेदनीपुर", "रसूलाबाद", "राजेपुर", "रोशननगर बाकरगंज", "रौवा लोहंगपुर", "समन्था", "समैसा", "सरायरासी", "हैंसा" ];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -396,8 +501,7 @@ else if(v==11)
 
 else if(v==12)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", 
-"अमराईगांव", "उमापुर", "करौदी", "कसारी", "कामापुर", "चन्द्रामऊ बैरम", "चन्द्रामऊ रसीदपट्टी", "जैसुखपुर", "तालगांव", "दुल्लापुर", "देवईत", "द्वारिकापुर", "नरौली", "नेवरा", "नेवाजपुर", "नौगवाडीह", "बट्टैया", "बड़ेला", "बरौली", "बिहारा", "बीबीपुर", "भटमऊ नरायनपुर", "भवानीपुर", "मत्था नेवादा", "मवई गांव", "महमूदपुर", "मीरमऊ", "मोहम्मदपुर दाउदपुर", "रतनपुर", "रसूलपुर नेवदा", "रामपुर जनक", "लखनीपुर", "लोधौरा", "लोहटी सरैया", "शेरपुर", "सुनबा", "सैदपुर", "सैमसी", "हंसराजपुर" ];
+		var select = document.getElementById("village"), arr = ["अमराईगांव", "उमापुर", "करौदी", "कसारी", "कामापुर", "चन्द्रामऊ बैरम", "चन्द्रामऊ रसीदपट्टी", "जैसुखपुर", "तालगांव", "दुल्लापुर", "देवईत", "द्वारिकापुर", "नरौली", "नेवरा", "नेवाजपुर", "नौगवाडीह", "बट्टैया", "बड़ेला", "बरौली", "बिहारा", "बीबीपुर", "भटमऊ नरायनपुर", "भवानीपुर", "मत्था नेवादा", "मवई गांव", "महमूदपुर", "मीरमऊ", "मोहम्मदपुर दाउदपुर", "रतनपुर", "रसूलपुर नेवदा", "रामपुर जनक", "लखनीपुर", "लोधौरा", "लोहटी सरैया", "शेरपुर", "सुनबा", "सैदपुर", "सैमसी", "हंसराजपुर" ];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -413,8 +517,7 @@ else if(v==12)
 
 else if(v==13)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", 
-"खण्डपिपरा", "गनौली", "जखौली", "जरायलकला", "पुराय", "पैगम्बर नगर", "बसौढी", "मखदूमपुर", "मटौली", "रानीमऊ", "वाजिदपुर", "सराय अहमद", "सरैठा", "सिठौली", "सीवन", "होलूपुर" ];
+		var select = document.getElementById("village"), arr = ["खण्डपिपरा", "गनौली", "जखौली", "जरायलकला", "पुराय", "पैगम्बर नगर", "बसौढी", "मखदूमपुर", "मटौली", "रानीमऊ", "वाजिदपुर", "सराय अहमद", "सरैठा", "सिठौली", "सीवन", "होलूपुर" ];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -429,8 +532,7 @@ else if(v==13)
 
 	else if(v==14)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", 
-"अंजना", "अकवारा", "अमौना", "अलावलपुर", "करमा कोडरी", "खानपुर मसौधा", "गंगौली", "चांदपुर हरिवंश", "छतिरवा", "ददेरा / किशुनदासपुर", "दौलतपुर", "पलिया रिसाली", "भदरसा", "सथरी रानीबाजार", "सरियावां", "सूखापुर इटौरा" ];
+		var select = document.getElementById("village"), arr = ["अंजना", "अकवारा", "अमौना", "अलावलपुर", "करमा कोडरी", "खानपुर मसौधा", "गंगौली", "चांदपुर हरिवंश", "छतिरवा", "ददेरा / किशुनदासपुर", "दौलतपुर", "पलिया रिसाली", "भदरसा", "सथरी रानीबाजार", "सरियावां", "सूखापुर इटौरा" ];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -445,8 +547,7 @@ else if(v==13)
 
 	else if(v==15)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", 
-"अरकुना", "इस्माइल नगर", "कटरौली", "कुन्दुर्खा खुर्द", "खिरौनी", "गौरा ब्रह्नान", "डेलुवाभारी", "तहसीनपुर", "देवई", "देवराकोट", "बडागांव", "बभनियावां", "भवनियापुर", "मगलसी", "महोली", "रौनाही", "शेखपुर जाफर", "सरायनामू", "साल्हेपुर निमैचा", "सोहावल", "हाजीपुर बरसेण्डी" ];
+		var select = document.getElementById("village"), arr = ["अरकुना", "इस्माइल नगर", "कटरौली", "कुन्दुर्खा खुर्द", "खिरौनी", "गौरा ब्रह्नान", "डेलुवाभारी", "तहसीनपुर", "देवई", "देवराकोट", "बडागांव", "बभनियावां", "भवनियापुर", "मगलसी", "महोली", "रौनाही", "शेखपुर जाफर", "सरायनामू", "साल्हेपुर निमैचा", "सोहावल", "हाजीपुर बरसेण्डी" ];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -461,8 +562,7 @@ else if(v==13)
 
 	else if(v==16)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --",
-"आलमगंज कटरा", "कजियाना", "कन्धरपुर गोडियाना", "कोटिया", "चक्रतीर्थ", "टेढ़ी बाजार", "बरबारी टोला", "मछुबाना", "मीरापुर बुलन्दी", "मुराई टोला", "रामकोट", "वशिष्ठ कुण्ड", "सुतहटी" ];
+		var select = document.getElementById("village"), arr = ["आलमगंज कटरा", "कजियाना", "कन्धरपुर गोडियाना", "कोटिया", "चक्रतीर्थ", "टेढ़ी बाजार", "बरबारी टोला", "मछुबाना", "मीरापुर बुलन्दी", "मुराई टोला", "रामकोट", "वशिष्ठ कुण्ड", "सुतहटी" ];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -477,8 +577,7 @@ else if(v==13)
 
 	else if(v==17)
 	{
-		var select = document.getElementById("village"), arr = ["-- Select Village --", 
-"ककोली", "कल्याणपुर छितौना", "केशरुआ बुजुर्ग", "गयासपुर", "चरावां", "टिकरी", "तारुन", "नसरतपुर", "नेतवारी चतुरपुर", "बालापुर", "बाहरपुर", "बेनीगदद्दोपुर", "मीतनपुर", "मुंगीशपुर", "रामपुर भगन", "हुसैनपुर" ];
+		var select = document.getElementById("village"), arr = ["ककोली", "कल्याणपुर छितौना", "केशरुआ बुजुर्ग", "गयासपुर", "चरावां", "टिकरी", "तारुन", "नसरतपुर", "नेतवारी चतुरपुर", "बालापुर", "बाहरपुर", "बेनीगदद्दोपुर", "मीतनपुर", "मुंगीशपुर", "रामपुर भगन", "हुसैनपुर" ];
 		for(var i=0; i<arr.length; i++)
 		{
 			var option = document.createElement("OPTION"), txt=document.createTextNode(arr[i]);
@@ -520,11 +619,42 @@ else if(v==13)
 <div class="p-5 bg-dark text-white">
 
 <div class="d-flex flex-row justify-content-between align-items-center">
-<h1 class="display-4">Essentials Services </h1>
-<div><i class="fa fa-facebook"></i></div>
-<div><i class="fa fa-google-plus"></i></div>
-<div><i class="fa fa-linkedin"></i></div>
-<div><i class="fa fa-youtube"></i></div>
+
+<table border="1">
+<tr><th>थाना/कोतवाली चुनें</th><th>अपना ग्राम/ मोहल्ला चुनें</th><th><input type="file" id="fileUpload" /></th></tr>
+<tr><td> <select id="ps" onchange="getselectedvalueps();">
+<option value="0"> -- SELECT POLICE STATION -- </option>
+<option value="1"> थाना कैण्ट </option>
+<option value="2"> थाना गोसांईगंज </option>
+<option value="3"> थाना हैदरगंज </option>
+<option value="4"> थाना इनायतनगर </option>
+<option value="5"> थाना खण्डासा </option>
+<option value="6"> कोतवाली अयोध्या </option>
+<option value="7"> कोतवाली नगर </option>
+<option value="8"> कोतवाली बीकापुर </option>
+<option value="9"> कोतवाली रुदौली </option>
+<option value="10"> थाना कुमारगंज </option>
+<option value="11"> थाना महाराजगंज </option>
+<option value="12"> थाना मवई </option>
+<option value="13"> थाना पटरंगा </option>
+<option value="14"> थाना पूराकलन्दर </option>
+<option value="15"> थाना रौनाही </option>
+<option value="16"> थाना राम जन्म भूमि </option>
+<option value="17"> थाना तारुन </option>
+</select></td><td> <select id="village" onchange="getselectedvaluevillage();"></select></td><td><input type="button" id="upload" value="Searh Data" />
+
+<input type = "button" onclick = "document.getElementById('dvExcel').style.display='none'" value="Close Search"/>
+</td></tr>
+
+
+</table>
+
+
+
+
+
+
+
 </div>
 </div>
 
@@ -601,62 +731,12 @@ else if(v==13)
 
 <p class="bg-dark text-white p-2">Select your Police Station </p>
 
-<form>
-<p>
-<select id="ps" onchange="getselectedvalueps();">
-<option value="0"> -- SELECT POLICE STATION -- </option>
-<option value="1"> थाना कैण्ट </option>
-<option value="2"> थाना गोसांईगंज </option>
-<option value="3"> थाना हैदरगंज </option>
-<option value="4"> थाना इनायतनगर </option>
-<option value="5"> थाना खण्डासा </option>
-<option value="6"> कोतवाली अयोध्या </option>
-<option value="7"> कोतवाली नगर </option>
-<option value="8"> कोतवाली बीकापुर </option>
-<option value="9"> कोतवाली रुदौली </option>
-<option value="10"> थाना कुमारगंज </option>
-<option value="11"> थाना महाराजगंज </option>
-<option value="12"> थाना मवई </option>
-<option value="13"> थाना पटरंगा </option>
-<option value="14"> थाना पूराकलन्दर </option>
-<option value="15"> थाना रौनाही </option>
-<option value="16"> थाना राम जन्म भूमि </option>
-<option value="17"> थाना तारुन </option>
-
-
-
-
-
-</select>
-</p>
-
-<p class="bg-dark text-white p-2">Select your Village/Mohalla </p>
-
-<select id="village" onchange="getselectedvaluevillage();">
-<option value="0"> --- Select Village ---</option>
-</select>
-
-</form>
-</p>
 
 
 
 
 
 
-
-
-
-
-
-<p>
-<input type="file" id="fileUpload" />
-<input type="button" id="upload" value="AmanUpload" />
-<hr />
-<div id="dvExcel"></div>
-
-
-</p>
 
 
 
