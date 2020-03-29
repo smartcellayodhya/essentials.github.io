@@ -1,23 +1,9 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
 <head>
-<title>Essential Services</title>
+<title>Essential</title>
 
-
-
-<script type="text/javascript" src="aman.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="style.css">
-
-
-
-
-
-
-
-
-<div id="dvExcel"></div>
-
+	<script type="text/javascript" src="aman.js"></script>
+  <link rel="stylesheet" type="text/css" href="style2.css">
 
 <script>
 
@@ -311,17 +297,23 @@ else if(v==12)
 }
 
 </script>
-
-
-
 </head>
 
-<body>
 
-<div>
-<table border="1">
-<tr><th>थाना/कोतवाली चुनें</th><th>अपना ग्राम/ मोहल्ला चुनें</th><th>क्लिक करें</th></tr>
-<tr><td> <select id="ps" onchange="getselectedvalueps();">
+<body>
+<div class="container">
+	
+	<div class="box">
+	<h2>2</h2>
+	<h3>Service Two</h3>
+	<p>This is INdia, We Have to save from CORONA Virus.This is INdia, We Have to save from CORONA Virus.This is INdia, We Have to save from CORONA Virus.This is INdia, We Have to save from CORONA Virus.</p>
+	
+	</div>
+	<div class="box">
+	<h2>1</h2>
+	<h3>Service Your Police staion</h3>
+	
+	<select class="sel" id="ps" onchange="getselectedvalueps();">
 <option value="0"> -- SELECT POLICE STATION -- </option>
 <option value="Cantt/ कैण्ट"> थाना कैण्ट </option>
 <option value="Gosaiganj/ गोसांईगंज"> थाना गोसांईगंज </option>
@@ -340,15 +332,23 @@ else if(v==12)
 <option value="RJB/ राम जन्म भूमि"> थाना राम जन्म भूमि </option>
 <option value="Tarun/ तारुन"> थाना तारुन </option>
 <option value="Khandasa/ खण्डासा"> थाना खण्डासा </option>
-</select></td><td> <select id="village" > <option value="0">-- Select Village/ Mohalla --</option></select></td>
-<td><input type="button" onclick="getrec();" class="but" id="upload" value="खोंजें" />
+</select>
+	
+	
 
-<input type = "button" class="but" onclick = "document.getElementById('dvExcel').style.display='none'" value="बन्द करें"/>
-</td></tr>
-
-
-</table>
-
-
+	<h3>Service Your Village/Mohalla</h3>
+	
+	<select class="sel" id="village" > <option value="0">-- Select Village/ Mohalla --</option></select>
+	<h3>Service One</h3>
+	<input type="button" onclick="getrec();" class="but" id="upload" value="खोंजें" />
+	<p>This is INdia, We Have to save from CORONA Virus.This is INdia, We Have <br>to save from CORONA Virus.This is INdia, We Have to save from CORONA Virus.This is INdia, We Have to save from CORONA Virus.</p>
+	
+	</div>
+	
+	
 </div>
 
+
+</body>
+
+</html>
