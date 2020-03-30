@@ -36,17 +36,17 @@ body{
 	position:relative;
 	background: #fff;
 	padding: 20px 40px 40px;
-	text-align: center;
+	
 	overflow:hidden;
 	border-radius: 20px;
 }
 
 .container .box:nth-child(1){
-	background: linear-gradient(45deg, #036eb7, #64eaff);
+	background: linear-gradient(45deg, #fff, #fff);
 }
 
 .container .box:nth-child(2){
-	background: linear-gradient(45deg, #E91e63, #ed55ff);
+	background: linear-gradient(45deg, #fff, #fff);
 }
 
 .container .box .sel {
@@ -54,7 +54,7 @@ body{
 	margin:1%;
 	padding:10px;
 	font-size:30px;
-	color:Green;
+	color:blue;
 	z-index:1;
 	opacity: 0.4;
 	 
@@ -65,7 +65,7 @@ body{
 	margin:1%;
 	padding:10px;
 	font-size:30px;
-	
+	color:#110101;
 	z-index:1;
 	opacity: 0.4;
 	 
@@ -76,7 +76,7 @@ body{
 	margin:0;
 	padding:0;
 	font-size:60px;
-	color:#fff;
+	color:#110101;
 	z-index:1;
 	opacity: 0.4;
 	
@@ -88,9 +88,9 @@ body{
 	margin:0;
 	padding:0;
 	font-size:45px;
-	color:#fff;
+	color:#110101;
 	z-index:1;
-	opacity: 0.4;
+	
 	
 }
 
@@ -101,7 +101,7 @@ body{
 	margin:0;
 	padding:0;
 	font-size:30px;
-	color:#fffe;
+	color:#110101;
 	text-transform:uppercase;
 	
 }
@@ -112,7 +112,7 @@ body{
 	margin:0;
 	padding:2px;
 	font-size:18px;
-	color:#40FF33;
+	color:#110101;
 	text-transform:uppercase;
 	font-style: italic;
 	
@@ -123,7 +123,7 @@ body{
 	margin:0;
 	padding:0;
 	font-size:22px;
-	color:#64eaff;
+	color:#110101;
 	text-transform:uppercase;
 	font-style: italic;
 	
@@ -134,7 +134,7 @@ body{
 	margin:0;
 	padding:0;
 	font-size:36px;
-	color:#5CF30F;
+	color:#110101;
 	text-transform:uppercase;
 	
 }
@@ -143,4 +143,29 @@ body{
 	padding:0;
 	font-size:18px;
 	color:#fff;
+}
+
+.blink_text {
+ animation-name: blinker;
+ animation-duration: 2s;
+ animation-timing-function: linear;
+ animation-iteration-count: infinite;
+}
+
+
+.blink_text2 {
+ animation-name: blinker;
+ animation-duration: 3s;
+ animation-timing-function: linear;
+ animation-iteration-count: infinite;
+}
+
+@keyframes blinker {  
+ 0% { opacity: 1.0; }
+ 50% { opacity: 0.0; }
+ 100% { opacity: 1.0; }
+}
+
+img {
+  border-radius: 50%;
 }
